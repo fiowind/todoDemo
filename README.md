@@ -1,7 +1,7 @@
 # todoDemo
 A simple todo Demo by Django.
 <br>
-First build Django Web.
+First building of Django Web.
 
 #introduction
 Every user has own todo list.<br>
@@ -15,4 +15,5 @@ python manage.py syncdb<br>
 python manage.py runserver 0.0.0.0:8000<br>
 
 #Demo Site
-http://guanju99.com:8000
+http://guanju99.com:8000<br>
+(Cento6.5;Django1.7;python2.7)
