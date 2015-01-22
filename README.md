@@ -10,7 +10,7 @@ You can remind yourself doing things by this app.<br>
 I will optimize it continueing.
 
 #runserver
-python manage.py migrations login todo<br>
+python manage.py migrate login todo<br>
 python manage.py syncdb<br>
 python manage.py runserver 0.0.0.0:8000<br>
 
