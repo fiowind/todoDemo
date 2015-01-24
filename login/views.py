@@ -21,11 +21,11 @@ def regist(req):
         #添加到数据库
         user = User.objects.filter(username = username)
         if user:
-            return HttpResponse("username occupied, change it!")
+            return HttpResponse("<div id='success'>username occupied, change it!</div>")
         User.objects.create(username= username,password=password)
-        return HttpResponse("regist success!!")
+        return HttpResponse("<div id='success'>regist success!!</div>")
     else:
-        return HttpResponse("regist failed!!")
+        return HttpResponse("<div id='success'>regist failed!!</div>")
 
 
 def regist_bak(req):
