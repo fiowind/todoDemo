@@ -12,5 +12,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', include('login.urls')),
     url(r'^login/', include('login.urls')),
-    url(r'^todo/', include('simpleTodo.urls')),
+    url(r'^todo/', include('todo.urls')),
 )

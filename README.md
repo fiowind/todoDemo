@@ -9,21 +9,21 @@ I will optimize it continueing.
 
 #use it!
 ---Download
-mkdir MytodoApp<br>
-cd MytodoApp<br>
-git clone https://github.com/fiowind/todoDemo.git<br>
+$ mkdir MytodoApp<br>
+$ cd MytodoApp<br>
+$ git clone https://github.com/fiowind/todoDemo.git<br>
 ---use virtualenv(use python2.7)
-sudo easy_install virtualenv<br>
-virtualenv env<br>
-source env/bin/activate<br>
-cd todoDemo<br>
+$ sudo easy_install virtualenv<br>
+$ virtualenv env<br>
+$ source env/bin/activate<br>
+$ cd todoDemo<br>
 ---run todoDemo
-pip install -r requirements.txt
-python manage.py syscdb<br>
-python manage.py runserver<br>
+$ pip install -r requirements.txt
+$ python manage.py syncdb<br>
+$ python manage.py runserver<br>
 ---quit
 Ctrl+c
-deactivate
+$ deactivate
 
 #Demo Site
 http://guanju99.com:8000<br>

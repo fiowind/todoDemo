@@ -3,7 +3,7 @@
 
 from django.conf.urls import *
 
-urlpatterns = patterns(('simpleTodo.views'),
+urlpatterns = patterns(('todo.views'),
     url(r'^$', 'todolist', name='todo'),
     url(r'^addtodo/$', 'addtodo', name='add'),
     url(r'^updatetodo/$', 'todoupdate', name='edit'),
