@@ -8,21 +8,21 @@ You can remind yourself doing things by this app.<br>
 I will optimize it continueing.
 
 #use it!
----Download
-$ mkdir MytodoApp<br>
-$ cd MytodoApp<br>
+<strong>---Download</strong><br>
+$ mkdir todoApp<br>
+$ cd todoApp<br>
 $ git clone https://github.com/fiowind/todoDemo.git<br>
----use virtualenv(use python2.7)
+<strong>---use virtualenv(use python2.7)</strong><br>
 $ sudo easy_install virtualenv<br>
 $ virtualenv env<br>
 $ source env/bin/activate<br>
 $ cd todoDemo<br>
----run todoDemo
+<strong>---run todoDemo</strong><br>
 $ pip install -r requirements.txt
 $ python manage.py syncdb<br>
 $ python manage.py runserver<br>
----quit
-Ctrl+c
+<strong>---quit</strong><br>
+Ctrl+c<br>
 $ deactivate
 
 #Demo Site
