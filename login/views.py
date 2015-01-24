@@ -25,7 +25,7 @@ def regist(req):
             return HttpResponse("regist success!!<br><a href='/login'>back</a>")
     else:
         uf = UserForm()
-    return render_to_response('regist.html',{'uf':uf}, context_instance=RequestContext(req))
+    return render_to_response('login/regist.html',{'uf':uf}, context_instance=RequestContext(req))
 
 
 def login(req):
@@ -35,15 +35,15 @@ def login(req):
         user = User.objects.filter(username__exact = username,password__exact = password)
         if user:
             response = HttpResponseRedirect('/todo')
-            response.set_cookie('username',username,3600)
+            response.set_cookie('username',username,3600)#dead time is 60minutes
             return response
         else:
             return HttpResponseRedirect('/login/login/')
-    return render_to_response('login.html',context_instance=RequestContext(req))
+    return render_to_response('login/login.html',context_instance=RequestContext(req))
 
 def index(req):
     username = req.COOKIES.get('username','')
-    return render_to_response('index.html' ,{'username':username})
+    return render_to_response('login/index.html' ,{'username':username})
 
 def logout(req):
     response = HttpResponseRedirect('/login/')

@@ -1,0 +1,65 @@
+
+{% block edit %}
+<div class="modal hide fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Edit TODO</h3>
+        </div>
+    <form action="{% url 'update' todo.id %}" method="post">{% csrf_token %}
+        <div class="modal-body">
+            <textarea name="todo" class="txtodo" id="txtodo" required="required">{{ todo.todo }}</textarea>
+            <fieldset>
+                <label class="radio inline" for="priority">
+                    <span class="label label-info">Priority</span>
+                </label>
+                <label class="radio inline" for="priority">
+                    <input type="radio" name="priority" value="1" {% if todo.priority == '1' %} checked{% endif %}/>
+                    <span class="label label-important">十万火急</span>
+                </label>          
+                <label class="radio inline" for="priority">
+                    <input type="radio" name="priority" value="2" {% if todo.priority == '2' %} checked{% endif %}/>
+                    <span class="label label-warning">重要</span>
+                </label>          
+                <label class="radio inline" for="priority">
+                    <input type="radio" name="priority" value="3" {% if todo.priority == '3' %} checked{% endif %}/>
+                    <span class="label label-success">勿忘</span>
+                </label>
+                <input type="hidden" name="id" value="{{ todo.id }}" />
+            </fieldset>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button id="send" class="btn btn-success" type="submit" name="submit"  >Save changes</button>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+function update() {
+    $('#editModal form').submit(function() {
+        $.ajax({
+            type: "POST",
+            data: $('#editModal form').serialize(),
+            url: "{% url 'edit' %}",
+            cache: false,
+            dataType: "html",
+            success: function(html, textStatus) {
+                $('#todo').replaceWith(html);
+                $('#editModal').modal('hide');
+                $('#editModal form')[0].reset();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                $('#comment_form form').replaceWith('Your comment was unable to be posted at this time.');
+            }
+        });
+        return false;
+    });
+
+}
+$(document).ready(function() {
+    update();
+})
+</script>
+
+{% endblock %}
