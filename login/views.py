@@ -16,8 +16,8 @@ class UserForm(forms.Form):
 def regist(req):
     if req.method == 'POST':
         #获得表单数据
-        username = req.POST['username']
-        password = req.POST['password']
+        username = req.POST['iusername']
+        password = req.POST['ipassword']
         #添加到数据库
         user = User.objects.filter(username = username)
         if user:
