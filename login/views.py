@@ -15,6 +15,21 @@ class UserForm(forms.Form):
 
 def regist(req):
     if req.method == 'POST':
+        #获得表单数据
+        username = req.POST['username']
+        password = req.POST['password']
+        #添加到数据库
+        user = User.objects.filter(username = username)
+        if user:
+            return HttpResponse("username occupied, change it!")
+        User.objects.create(username= username,password=password)
+        return HttpResponse("regist success!!")
+    else:
+        return HttpResponse("regist failed!!")
+
+
+def regist_bak(req):
+    if req.method == 'POST':
         uf = UserForm(req.POST)
         if uf.is_valid():
             #获得表单数据
@@ -26,7 +41,6 @@ def regist(req):
     else:
         uf = UserForm()
     return render_to_response('login/regist.html',{'uf':uf}, context_instance=RequestContext(req))
-
 
 def login(req):
     if req.method == 'POST':

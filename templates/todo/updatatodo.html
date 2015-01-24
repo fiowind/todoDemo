@@ -50,7 +50,7 @@ function update() {
                 $('#editModal form')[0].reset();
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                $('#comment_form form').replaceWith('Your comment was unable to be posted at this time.');
+                alert('Error occurs!');
             }
         });
         return false;

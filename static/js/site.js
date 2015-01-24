@@ -12,7 +12,7 @@ $(function() {
                 $('#myModal form')[0].reset();
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                $('#comment_form form').replaceWith('Your comment was unable to be posted at this time.');
+                alert('Error occurs!');
             }
         });
         return false;
@@ -32,7 +32,7 @@ $(function() {
                 $('#editModal form')[0].reset();
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                $('#comment_form form').replaceWith('Your comment was unable to be posted at this time.');
+                alert('Error occurs!');
             }
         });
 
@@ -55,7 +55,7 @@ $(function() {
                 $('#todo').replaceWith(html);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                $('#comment_form form').replaceWith('Your comment was unable to be posted at this time.');
+                alert('Error occurs!');
             }
         });
         // new Ajax.Updater('todo','{% url shanchu %}',{'id' : id});
