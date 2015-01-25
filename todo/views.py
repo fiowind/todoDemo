@@ -7,6 +7,8 @@ from models import Todo
 
 def todolist(request):
     username = request.COOKIES.get('username', '')
+    if not username:
+        return HttpResponseRedirect('/login')
     todolist = Todo.objects.filter(flag=1).filter(user=username)
     finishtodos = Todo.objects.filter(flag=0).filter(user=username)
     return render_to_response('todo/simpleTodo.html',
@@ -34,7 +36,7 @@ def wancheng(request):
             return render_to_response('todo/showtodo.html',
                                       {'todolist': todolist,
                                        'finishtodos': finishtodos
-                                      },
+                                       },
                                       context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/todo/')
@@ -66,7 +68,7 @@ def addtodo(request):
         return render_to_response('todo/showtodo.html',
                                   {'todolist': todolist,
                                    'finishtodos': finishtodos
-                                  },
+                                   },
                                   context_instance=RequestContext(request))
     else:
         todolist = Todo.objects.filter(flag=1).filter(user=username)
@@ -91,7 +93,7 @@ def todoshanchu(request):
         return render_to_response('todo/showtodo.html',
                                   {'todolist': todolist,
                                    'finishtodos': finishtodos
-                                  },
+                                   },
                                   context_instance=RequestContext(request))
     else:
         todolist = Todo.objects.filter(flag=1).filter(user=username)
@@ -119,7 +121,7 @@ def todoupdate(request):
         return render_to_response('todo/showtodo.html',
                                   {'todolist': todolist,
                                    'finishtodos': finishtodos,
-                                  },
+                                   },
                                   context_instance=RequestContext(request))
     try:
         id = request.GET.get('id')
