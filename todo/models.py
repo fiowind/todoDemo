@@ -3,10 +3,12 @@
 
 from django.db import models
 
+
 class Todo(models.Model):
     user = models.CharField(max_length=50)
     todo = models.CharField(max_length=50)
-    flag = models.IntegerField(max_length=2, default=1) # 1 for undo, 0 for done
+    # 1 for undo, 0 for done
+    flag = models.IntegerField(max_length=2, default=1)
     priority = models.CharField(max_length=2)
     pubtime = models.DateTimeField(auto_now_add=True)
 

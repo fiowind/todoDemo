@@ -6,13 +6,13 @@ from models import Todo
 
 
 def todolist(request):
-    username = request.COOKIES.get('username','')
+    username = request.COOKIES.get('username', '')
     todolist = Todo.objects.filter(flag=1).filter(user=username)
     finishtodos = Todo.objects.filter(flag=0).filter(user=username)
     return render_to_response('todo/simpleTodo.html',
                               {'todolist': todolist,
-                                  'finishtodos': finishtodos,
-                                  'username': username},
+                               'finishtodos': finishtodos,
+                               'username': username},
                               context_instance=RequestContext(request))
 
 
@@ -33,8 +33,8 @@ def wancheng(request):
             finishtodos = Todo.objects.filter(flag=0).filter(user=username)
             return render_to_response('todo/showtodo.html',
                                       {'todolist': todolist,
-                                          'finishtodos': finishtodos
-                                          },
+                                       'finishtodos': finishtodos
+                                      },
                                       context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect('/todo/')
@@ -48,9 +48,8 @@ def todoback(request, id=''):
         todo.save()
         return HttpResponseRedirect('/todo/')
     todolist = Todo.objects.filter(flag=1).filter(user=username)
-    return render_to_response('todo/simpleTodo.html', {'todolist': todolist,'username': username},
+    return render_to_response('todo/simpleTodo.html', {'todolist': todolist, 'username': username},
                               context_instance=RequestContext(request))
-
 
 
 def addtodo(request):
@@ -60,21 +59,20 @@ def addtodo(request):
         print 'post'
         atodo = request.POST['todo']
         priority = request.POST['priority']
-        todo = Todo(user=username,todo=atodo, priority=priority, flag=1)
+        todo = Todo(user=username, todo=atodo, priority=priority, flag=1)
         todo.save()
         todolist = Todo.objects.filter(flag=1).filter(user=username)
         finishtodos = Todo.objects.filter(flag=0).filter(user=username)
         return render_to_response('todo/showtodo.html',
                                   {'todolist': todolist,
                                    'finishtodos': finishtodos
-                                   },
+                                  },
                                   context_instance=RequestContext(request))
     else:
         todolist = Todo.objects.filter(flag=1).filter(user=username)
         finishtodos = Todo.objects.filter(flag=0).filter(user=username)
         return render_to_response('todo/simpleTodo.html',
-                                  {'todolist': todolist, 'finishtodos': finishtodos,'username': username})
-
+                                  {'todolist': todolist, 'finishtodos': finishtodos, 'username': username})
 
 
 def todoshanchu(request):
@@ -92,14 +90,14 @@ def todoshanchu(request):
         finishtodos = Todo.objects.filter(flag=0).filter(user=username)
         return render_to_response('todo/showtodo.html',
                                   {'todolist': todolist,
-                                      'finishtodos': finishtodos
-                                      },
+                                   'finishtodos': finishtodos
+                                  },
                                   context_instance=RequestContext(request))
     else:
         todolist = Todo.objects.filter(flag=1).filter(user=username)
         finishtodos = Todo.objects.filter(flag=0).filter(user=username)
         return render_to_response('todo/simpleTodo.html',
-                                  {'todolist': todolist, 'finishtodos': finishtodos,'username': username})
+                                  {'todolist': todolist, 'finishtodos': finishtodos, 'username': username})
 
 
 def todoupdate(request):
@@ -114,14 +112,14 @@ def todoupdate(request):
 
         todo.todo = request.POST['todo']
         todo.priority = request.POST['priority']
-        print 'pp'+'todo.priority'
+        print 'pp' + 'todo.priority'
         todo.save()
-        todolist = Todo.objects.filter(flag=1).filter(user=username)  
+        todolist = Todo.objects.filter(flag=1).filter(user=username)
         finishtodos = Todo.objects.filter(flag=0).filter(user=username)
         return render_to_response('todo/showtodo.html',
                                   {'todolist': todolist,
-                                      'finishtodos': finishtodos,
-                                      },
+                                   'finishtodos': finishtodos,
+                                  },
                                   context_instance=RequestContext(request))
     try:
         id = request.GET.get('id')
@@ -129,7 +127,6 @@ def todoupdate(request):
         todo = Todo.objects.get(id=id)
     except Exception:
         raise Http404
-        print 'error'
     if todo:
         return render_to_response('todo/updatatodo.html', {'todo': todo},
                                   context_instance=RequestContext(request))
@@ -140,7 +137,7 @@ def todoupdate(request):
                                   {'todolist': todolist, 'finishtodos': finishtodos})
 
 
-#backup def
+# backup def
 def todofinish(request, id=''):
     username = request.COOKIES.get('username', '')
     todo = Todo.objects.get(id=id)
@@ -149,11 +146,11 @@ def todofinish(request, id=''):
         todo.save()
         return HttpResponseRedirect('/todo/')
     todolist = Todo.objects.filter(flag=1).filter(user=username)
-    return render_to_response('todo/simpleTodo.html', {'todolist': todolist,'username':username},
+    return render_to_response('todo/simpleTodo.html', {'todolist': todolist, 'username': username},
                               context_instance=RequestContext(request))
 
 
-#backup def
+# backup def
 def updatetodo(request, id=''):
     username = request.COOKIES.get('username', '')
     try:
@@ -169,8 +166,8 @@ def updatetodo(request, id=''):
         finishtodos = Todo.objects.filter(flag=0).filter(user=username)
         return render_to_response('todo/simpleTodo.html',
                                   {'todolist': todolist,
-                                      'finishtodos': finishtodos,
-                                      'username':username},
+                                   'finishtodos': finishtodos,
+                                   'username': username},
                                   context_instance=RequestContext(request))
     else:
         try:
@@ -180,7 +177,9 @@ def updatetodo(request, id=''):
         return render_to_response('todo/updatatodo.html', {'todo': todo},
                                   context_instance=RequestContext(request))
 
-#backup def
+# backup def
+
+
 def deletetodo(request, id=''):
     username = request.COOKIES.get('username', '')
     try:
@@ -192,5 +191,5 @@ def deletetodo(request, id=''):
         return HttpResponseRedirect('/todo/')
     todolist = Todo.objects.filter(flag=1).filter(user=username)
     finishtodos = Todo.objects.filter(flag=0).filter(user=username)
-    return render_to_response('todo/showtodo.html', {'todolist': todolist,'finishtodos': finishtodos,'username':username},
+    return render_to_response('todo/showtodo.html', {'todolist': todolist, 'finishtodos': finishtodos, 'username': username},
                               context_instance=RequestContext(request))
