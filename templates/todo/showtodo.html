@@ -112,18 +112,21 @@ function sendtodo() {
     $('.todoTrash').click(function() {
         /* Act on the event */
         var id = $(this).parent().attr('todoid');
-        $.ajax({
-            data: {'id': id},
-            url: "{% url 'shanchu' %}",
-            cache: false,
-            dataType: "html",
-            success: function(html, textStatus) {
-                $('#todo').replaceWith(html);
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                alert('Error occurs!');
-            }
-        });
+        var open = confirm('are you sure to delete?');
+        if(open==true){
+            $.ajax({
+                data: {'id': id},
+                url: "{% url 'shanchu' %}",
+                cache: false,
+                dataType: "html",
+                success: function(html, textStatus) {
+                    $('#todo').replaceWith(html);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert('Error occurs!');
+                }
+            });
+        }
         // new Ajax.Updater('todo','{% url 'shanchu' %}',{'id' : id});
         return false;
 

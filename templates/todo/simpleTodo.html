@@ -14,7 +14,6 @@
     {% block extra_head %}
 
     <script type="text/javascript">
-
         function sendtwitter() {
             $('#myModal form').submit(function() {
                 $.ajax({
@@ -77,19 +76,22 @@
             $('.todoTrash').click(function() {
                 /* Act on the event */
                 var id = $(this).parent().attr('todoid');
+                var open = confirm('are you sure to delete?');
                 // alert(id)
-                $.ajax({
-                    data: {'id': id},
-                    url: "{% url 'shanchu' %}",
-                    cache: false,
-                    dataType: "html",
-                    success: function(html, textStatus) {
-                        $('#todo').replaceWith(html);
-                    },
-                    error: function(XMLHttpRequest, textStatus, errorThrown) {
-                        alert('Error occurs!');
-                    }
-                });
+                if(open==true){
+                    $.ajax({
+                        data: {'id': id},
+                        url: "{% url 'shanchu' %}",
+                        cache: false,
+                        dataType: "html",
+                        success: function(html, textStatus) {
+                            $('#todo').replaceWith(html);
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            alert('Error occurs!');
+                        }
+                    });
+                }
                 // new Ajax.Updater('todo','{% url 'shanchu' %}',{'id' : id});
                 return false;
 
@@ -195,7 +197,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                <button id="send" class="btn btn-success" type="submit" name="submit">Save changes</button>
+                <button id="send" class="btn btn-success" type="submit" name="submit">Add</button>
             </div>
         </form>
     </div>
